@@ -3,6 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Flight</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        form label {
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #0066cc;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #0052a3;
+        }
+        
+        .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .home-button a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -35,6 +88,9 @@
 
             <input type="submit" value="Add Flight">
         </form>
+        <div class="home-button">
+            <a href="/admin/home">Home</a>
+        </div>
     </div>
 
 </body>
