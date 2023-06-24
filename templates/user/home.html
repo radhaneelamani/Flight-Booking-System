@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking Page</title>
+</head>
+<body>
+    <p>Welcome!</p>
+    <h2>Flight Search</h2>
+    <form action="/searchflights" method="POST">
+        <label for="from_location">From:</label>
+        <select id="from_location" name="from_location" required>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Goa">Goa</option>
+            <option value="Varanasi">Varanasi</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="Gujarat">Gujarat</option>
+            <!-- Add more options as needed -->
+        </select>
+        <label for="to_location">To:</label>
+        <select id="to_location" name="to_location" required>
+            <option value="Goa">Goa</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Varanasi">Varanasi</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <!-- Add more options as needed -->
+        </select>
+        <label for="departure_date">Departure Date:</label>
+        <input type="date" id="departure_date" name="departure_date" required>
+
+        <input type="submit" value="Search Flights">
+    </form>
+
+    <!-- Logout button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+
+    <form action="/mybookings" method="GET">
+        <button type="submit">View My Bookings</button>
+    </form>
+
+
+</body>
+</html>

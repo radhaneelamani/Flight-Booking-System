@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Flight</title>
+</head>
+<body>
+    <div>
+        <h3>Add Flights</h3>
+        <!-- Add flights form -->
+        <form action="/admin/addflight" method="POST" >
+            <label for="flight_number">Flight Number:</label>
+            <input type="text" id="flight_number" name="flight_number" required>
+
+            <label for="departure_city">Departure City:</label>
+            <input type="text" id="departure_city" name="departure_city" required>
+            
+            <label for="departure_date">Departure Date:</label>
+            <input type="text" id="departure_date" name="departure_date" required>
+            
+            <label for="departure_time">Departure Time:</label>
+            <input type="text" id="departure_time" name="departure_time" required>
+            
+            <label for="arrival_city">Arrival City:</label>
+            <input type="text" id="arrival_city" name="arrival_city" required>
+
+            <label for="arrival_date">Arrival Date:</label>
+            <input type="text" id="arrival_date" name="arrival_date" required>
+
+            <label for="arrival_time">Arrival Time:</label>
+            <input type="text" id="arrival_time" name="arrival_time" required>
+            
+            <label for="available_seats">Available Seats:</label>
+            <input type="text" id="available_seats" name="available_seats" required>
+
+            <input type="submit" value="Add Flight">
+        </form>
+    </div>
+
+</body>
+</html>

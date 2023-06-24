@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Details</title>
+</head>
+<body>
+    <h1>Passenger Details</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Phone Number</th>
+                <th>Email ID</th>
+                <th>Flight Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for passenger in passengers %}
+            <tr>
+                <td>{{ passenger[1] }}</td>
+                <td>{{ passenger[2] }}</td>
+                <td>{{ passenger[3] }}</td>
+                <td>{{ passenger[4] }}</td>
+                <td>{{ passenger[5] }}</td>
+                <td>{{ passenger[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/admin/home">Back to Home</a>
+
+</body>
+</html>

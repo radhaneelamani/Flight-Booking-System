@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking Page</title>
+</head>
+<body>
+    <p>Welcome!</p>
+    <h2>Available Flights</h2>
+    <table>
+        <tr>
+            <th>Flight Number</th>
+            <th>Departure City</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>Arrival City</th>
+            <th>Arrival Date</th>
+            <th>Arrival Time</th>
+            <th>Available Seats</th>
+        </tr>
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight[1] }}</td>
+            <td>{{ flight[2] }}</td>
+            <td>{{ flight[3] }}</td>
+            <td>{{ flight[4] }}</td>
+            <td>{{ flight[5] }}</td>
+            <td>{{ flight[6] }}</td>
+            <td>{{ flight[7] }}</td>
+            <td>{{ flight[8] }}</td>
+            <td><a href="/user/bookticket/{{ flight[1] }}">Book Ticket</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- Logout button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
