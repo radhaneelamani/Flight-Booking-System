@@ -11,3 +11,5 @@ pip
 setuptools
 wheel
 zipp
+gunicorn
+waitress
