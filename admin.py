@@ -30,7 +30,7 @@ def admin_login():
             conn.close()
             error_message = "Invalid credentials. Please try again."
 
-    return render_template('admin/login.html', error_message=error_message)
+    return render_template('/admin/login.html', error_message=error_message)
 
 
 @admin_routes.route('/logout', methods=['GET'])
@@ -50,7 +50,7 @@ def admin_home():
 
     conn.close()
 
-    return render_template('admin/home.html', flights=flights)
+    return render_template('/admin/home.html', flights=flights)
 
 
 # Add Flight route
@@ -81,7 +81,7 @@ def add_flight():
              arrival_city, arrival_date, arrival_time, available_seats))
         conn.commit()
         return redirect('/admin/home')
-    return render_template('admin/addflight.html')
+    return render_template('/admin/addflight.html')
 
     # return redirect('/admin/home')
 
@@ -102,7 +102,7 @@ def remove_flight():
         conn.commit()
         return redirect('/admin/home')
 
-    return render_template('admin/removeflight.html')
+    return render_template('/admin/removeflight.html')
 
 
 @admin_routes.route('/admin/passengerdetails/<flight_number>')
@@ -117,4 +117,4 @@ def passenger_details(flight_number):
 
     conn.close()
 
-    return render_template('admin/passengerdetails.html', passengers=passengers, flight_number=flight_number)
+    return render_template('/admin/passengerdetails.html', passengers=passengers, flight_number=flight_number)

@@ -33,7 +33,7 @@ def user_login():
             conn.close()
             error_message = "Invalid credentials. Please try again."
 
-    return render_template('user/login.html', error_message=error_message)
+    return render_template('/user/login.html', error_message=error_message)
 
 
 # Add new user
@@ -58,7 +58,7 @@ def add_user():
             (username, password, email, phonenumber))
         conn.commit()
         return redirect('/user/login')
-    return render_template('user/signup.html')
+    return render_template('/user/signup.html')
 
 
 @user_routes.route('/logout', methods=['GET'])
@@ -68,7 +68,7 @@ def logout():
 
 @user_routes.route('/user/home')
 def user_home():
-    return render_template('user/home.html')
+    return render_template('/user/home.html')
 
 
 @user_routes.route('/searchflights', methods=['POST'])
@@ -92,11 +92,11 @@ def search_flights():
             conn.close()
 
             # Render the flights.html template with the retrieved flights
-            return render_template('user/flights.html', flights=flights)
+            return render_template('/user/flights.html', flights=flights)
         else:
             conn.close()
             # error_message = "No flights found"
-            return render_template('user/home.html')
+            return render_template('/user/home.html')
     # Redirect to the user home page if the request method is not POST
 
     return redirect('/user/home')
@@ -148,7 +148,7 @@ def book_ticket(flight_number):
     flight = cursor.fetchone()
     conn.close()
 
-    return render_template('user/bookticket.html', flight=flight)
+    return render_template('/user/bookticket.html', flight=flight)
 
 
 @user_routes.route('/mybookings')
@@ -168,7 +168,7 @@ def my_bookings():
 
     conn.close()
 
-    return render_template('user/mybookings.html', bookings=bookings)
+    return render_template('/user/mybookings.html', bookings=bookings)
 
 
 @user_routes.route('/user/cancelticket/<booking_id>', methods=['POST'])
