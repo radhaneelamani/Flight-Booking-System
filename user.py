@@ -1,9 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, flash, session
 import sqlite3
+from datetime import datetime
 
 user_routes = Blueprint('user', __name__)
 
 user_routes.secret_key = 'session_key'
+
+# stored_password = ""
+# Todo: stored-password is not being accessible outside the user_login function, resolve it
 
 
 @user_routes.route('/user/login', methods=['GET', 'POST'])
@@ -14,6 +18,8 @@ def user_login():
         username = request.form['username']
         password = request.form['password']
 
+        stored_password = password
+
         # Connect to the SQLite database
         conn = sqlite3.connect('flightreservationdb.db')
         cursor = conn.cursor()
@@ -23,6 +29,9 @@ def user_login():
         user = cursor.fetchone()
 
         if user:
+            log_activity(username, password, "Successful login")
+
+        if user:
             # User login successful
             # Implement user authentication logic here
             session['username'] = username
@@ -30,10 +39,15 @@ def user_login():
             return redirect('/user/home')  # Redirect to the user home page
         else:
             # Admin login failed
+            log_activity(username, password, "Unsuccessful Login")
             conn.close()
             error_message = "Invalid credentials. Please try again."
 
     return render_template('/user/login.html', error_message=error_message)
+
+
+# print(stored_password, "storedinglobal")
+# todo: use while debugging
 
 
 # Add new user
@@ -63,6 +77,10 @@ def add_user():
 
 @user_routes.route('/logout', methods=['GET'])
 def logout():
+    username = session.get('username')
+    # passw = session.get('password')
+    # print(passw)
+    log_activity(username, "stored_password", "User logged out")
     return redirect('/')
 
 
@@ -137,6 +155,7 @@ def book_ticket(flight_number):
         bookings = cursor.fetchone()
 
         conn.close()
+        log_activity(username, "stored_password", "Ticket booked for flight {}".format(flight_number))
 
         flash('Ticket booked successfully!', 'success')
         return render_template('/user/bookingsuccessful.html', booking=bookings, flight=flights)
@@ -167,13 +186,16 @@ def my_bookings():
     bookings = cursor.fetchall()
 
     conn.close()
+    log_activity(username, "stored_password", "Viewed own bookings")
 
     return render_template('/user/mybookings.html', bookings=bookings)
 
 
 @user_routes.route('/user/cancelticket/<booking_id>', methods=['POST'])
 def cancel_ticket(booking_id):
+    username = session.get('username')
     # Connect to the SQLite database
+
     conn = sqlite3.connect('flightreservationdb.db')
     cursor = conn.cursor()
 
@@ -190,8 +212,21 @@ def cancel_ticket(booking_id):
     conn.commit()
 
     conn.close()
+    log_activity(username, 'stored_password', "Ticket canceled for booking {}".format(booking_id))
 
     # Flash a success message
     flash('Ticket canceled successfully!', 'success')
 
     return redirect('/mybookings')  # Redirect to the updated bookings page
+
+
+def log_activity(username, password, activity):
+    conn = sqlite3.connect('flightreservationdb.db')
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO logs(username, password, activity) VALUES (?, ?, ?)",
+        (username, password, activity)
+    )
+    conn.commit()
+    conn.close()
